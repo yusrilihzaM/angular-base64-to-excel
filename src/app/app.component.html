@@ -1,6 +1,23 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
-
-<a [href]="'data:application/octet-stream;base64,' + data | safe" download="excel.xls">Download</a>
+<div>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+    <div class="form-group">
+      <textarea
+        type="text"
+        class="form-control"
+        (keyup)="onKeyTextArea()"
+        id="dataBase64"
+        placeholder="Enter Base 64"
+        formControlName="dataBase64"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Encode Base 64</button>
+  </form>
+  <div [hidden]="isHidden">
+    <a
+      id="download"
+      [href]="'data:application/octet-stream;base64,' + rawDataBase64 | safe"
+      download="excel.xls"
+      >Your Download Is Ready</a
+    >
+  </div>
+</div>
